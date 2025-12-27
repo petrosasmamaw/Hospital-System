@@ -1,0 +1,123 @@
+:root {
+  --hosp-blue: #1a73e8;        /* Trustworthy Primary Blue */
+  --hosp-blue-dark: #1557b0;   /* Deep Blue for emphasis */
+  --hosp-blue-light: #e8f0fe;  /* Very soft blue for hover backgrounds */
+  --hosp-green: #2ecc71;       /* Health/Recovery Green */
+  --hosp-green-dark: #27ae60;
+  --hosp-white: #ffffff;
+  --hosp-text: #2c3e50;        /* Deep Slate for readability */
+  --hosp-muted: #7f8c8d;       /* Muted gray */
+  --hosp-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Main Navigation Container */
+.site-nav {
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  height: 72px;
+  background-color: var(--hosp-white);
+  box-shadow: var(--hosp-shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  border-bottom: 2px solid var(--hosp-blue-light);
+}
+
+/* Style for all Links (Dashboard, Books, etc.) */
+.site-nav a {
+  text-decoration: none;
+  color: var(--hosp-text);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 10px 18px;
+  margin: 0 4px;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+}
+
+/* Hover effect for Navigation Links */
+.site-nav a:hover {
+  color: var(--hosp-blue);
+  background-color: var(--hosp-blue-light);
+}
+
+/* Specifically style the "Dashboard" link to look like a brand if desired, 
+   otherwise it follows the general link style above */
+.site-nav a[href="/"] {
+  color: var(--hosp-blue);
+  font-weight: 800;
+  font-size: 1.1rem;
+  margin-right: 20px;
+}
+
+/* Welcome Text (The Span) */
+.site-nav span {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-right: 20px;
+  padding: 6px 12px;
+  background: var(--hosp-blue-light);
+  border-radius: 20px;
+  color: var(--hosp-blue-dark) !important; /* Overriding inline muted color */
+}
+
+/* The Logout Button */
+.logout-btn {
+  background-color: var(--hosp-green);
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 50px; /* Pill shape for a modern app feel */
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 10px rgba(46, 204, 113, 0.2);
+}
+
+.logout-btn:hover {
+  background-color: var(--hosp-green-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(46, 204, 113, 0.3);
+}
+
+.logout-btn:active {
+  transform: translateY(0);
+}
+
+/* Styling for Login and Register when logged out */
+.site-nav a[href="/login"] {
+  border: 1.5px solid var(--hosp-blue);
+  color: var(--hosp-blue);
+}
+
+.site-nav a[href="/register"] {
+  background-color: var(--hosp-blue);
+  color: white;
+  margin-left: 10px;
+}
+
+.site-nav a[href="/register"]:hover {
+  background-color: var(--hosp-blue-dark);
+  color: white;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 850px) {
+  .site-nav {
+    padding: 0 15px;
+  }
+  
+  .site-nav a {
+    padding: 8px 10px;
+    font-size: 0.85rem;
+  }
+
+  .site-nav span {
+    display: none; /* Hide welcome message on small tablets */
+  }
+}
