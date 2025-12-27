@@ -49,26 +49,30 @@ export default function Home() {
         </div>
       </motion.section>
        {/* CATEGORIES */}
-      <section className="categories">
-        <h2>Find Doctors by Specialty</h2>
-        <div className="category-grid">
-          {categories.map((cat, i) => (
-            <motion.div
-              key={i}
-              className="category-card"
-              whileHover={{ scale: 1.05 }}
-              onClick={() =>
-                navigate(`/doctors?category=${encodeURIComponent(cat.title)}`)
-              }
-            >
-              <img src={cat.image} alt={cat.title} />
-              <div className="overlay">
-                <h3>{cat.title}</h3>
-              </div>
-            </motion.div>
-          ))}
+       <section className="categories">
+           <h2>Find Doctors by Specialty</h2>
+               <div className="category-grid">
+                  {categories.map((cat, i) => (
+           <motion.div
+                   key={i}
+                   className="category-card"
+                   whileHover={{ scale: 1.05 }}
+                   initial={{ opacity: 0, y: 20 }}
+                   whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                   onClick={() =>
+           navigate(`/doctor?category=${encodeURIComponent(cat.title)}`)
+        } 
+      >
+        <img src={cat.image} alt={cat.title} />
+        <div className="overlay">
+          <h3>{cat.title}</h3>
         </div>
-      </section>
+      </motion.div>
+    ))}
+  </div>
+       </section>
+
 
       {/* ABOUT */}
       <motion.section
