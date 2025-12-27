@@ -8,6 +8,7 @@ import doctorRouter from './src/route/doctorRouter.js';
 import patientRouter from './src/route/patientRouter.js';
 import reportRouter from './src/route/reportRouter.js';
 import authRouter from './src/route/authRouter.js';
+import bookRouter from './src/route/bookRouter.js';
 
 dotenv.config();
 const app = express();
@@ -26,6 +27,7 @@ app.use('/api/doctors', doctorRouter);
 app.use('/api/patients', patientRouter);
 app.use('/api/reports', reportRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/books', bookRouter);
 
 
 app.use('/uploads', express.static(path.join(path.resolve(), 'uploads')));
