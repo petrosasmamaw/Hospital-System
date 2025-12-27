@@ -10,7 +10,16 @@ const doctorSchema = new mongoose.Schema({
     education: { type: String, required: true },
     description: { type: String, required: true },
     phone: { type: String, required: true },
-    category: { type: String, enum: ["Primary", "Bone, Joint & Muscle","Heart & Circulation","Brain & Mental Health","Digestive & Stomach"] },
+    category: {type: String,
+            enum: [
+                 "Primary",
+                 "Bone, Joint & Muscle",
+                 "Heart & Circulation",
+                 "Brain & Mental Health",
+                 "Digestive & Stomach"
+                  ],
+            required: true,
+    },
 },
 { timestamps: true }
 );

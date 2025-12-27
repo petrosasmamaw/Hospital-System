@@ -11,6 +11,7 @@ import Login from "./components/pages/login.jsx";
 import Register from "./components/pages/register.jsx";
 import Navbar from "./components/pages/navbar.jsx";
 import Profile from "./components/pages/profile.jsx";
+import DoctorBook from "./components/pages/doctorbook.jsx";
 
 function AppRoutes({ user }) {
 	return (
@@ -20,6 +21,7 @@ function AppRoutes({ user }) {
 			<Route path="/mybooks" element={user ? <MyBooks user={user} /> : <Navigate to="/login" replace />} />
             <Route path="/profile" element={user ? <Profile user={user} /> : <Navigate to="/login" replace />} />
 			<Route path="/myreports" element={user ? <MyReports user={user} /> : <Navigate to="/login" replace />} />
+            <Route path="/doctor" element={user ? <DoctorBook user={user} /> : <Navigate to="/login" replace />} />
 			<Route path="/login" element={!user ? <Login /> : <Navigate to="/" replace />} />
 			<Route path="/register" element={!user ? <Register /> : <Navigate to="/" replace />} />
 		</Routes>

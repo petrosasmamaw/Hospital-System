@@ -12,6 +12,14 @@ export const fetchDoctors = createAsyncThunk(
   }
 );
 
+export const fetchDoctorsByCategory = createAsyncThunk(
+  "doctors/fetchDoctorsByCategory",
+  async (category) => {
+    const response = await axios.get(`${CLIENTAPI_URL}category/${category}`);
+    return response.data;
+  }
+);
+
 // Fetch doctor by ID
 export const fetchDoctorById = createAsyncThunk(
   "doctors/fetchDoctorById",
@@ -124,6 +132,19 @@ const doctorSlice = createSlice({
       .addCase(fetchDoctors.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      })
+      // Fetch doctors by category
+      .addCase(fetchDoctorsByCategory.pending, (state) => {
+          state.loading = true;
+          state.error = null;
+      })
+      .addCase(fetchDoctorsByCategory.fulfilled, (state, action) => {
+          state.loading = false;
+          state.doctors = action.payload; // ✅ array replacement
+      })
+     .addCase(fetchDoctorsByCategory.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.error.message;
       })
       // Fetch doctor by ID
       .addCase(fetchDoctorById.pending, (state) => {

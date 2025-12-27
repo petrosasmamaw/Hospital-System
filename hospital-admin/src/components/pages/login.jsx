@@ -29,13 +29,11 @@ export default function Login() {
 
 	return (
 		<div>
-			<div className="page">
-				<h1>Admin Sign In</h1>
-				<p>Use this page to sign in as an administrator.</p>
-			</div>
+			
 			<div className="auth-container">
 			<form className="auth-form" onSubmit={handleSubmit}>
 				<h2>Sign In</h2>
+                <p>Use this page to sign in as an administrator.</p>
 				{error && <div className="error">{error}</div>}
 				{message && <div className="success">{message}</div>}
 				<label>Email</label>
