@@ -75,19 +75,24 @@ export default function MyReports({ user }) {
 			</header>
 
 			<section className="myreports-patient">
-				{patient ? (
-					<div className="patient-card">
-						<div>
-							<strong>{patient.name || "Patient"}</strong>
-							<div className="patient-meta">
-								{patient.email || patient.phone || ""}
+					{patient ? (
+						<div className="patient-card">
+							<div>
+								<strong>{patient.name || "Patient"}</strong>
+								<div className="patient-meta">
+									{patient.email || patient.phone || ""}
+								</div>
+								<div className="patient-blood">Blood Type: <span className="blood-badge">{patient.bloodType || "—"}</span></div>
+								<div className="patient-history">
+									<strong>Medical History</strong>
+									<p>{patient.medicalHistory || "No medical history provided."}</p>
+								</div>
 							</div>
+							<div className="patient-extra">ID: {patient._id}</div>
 						</div>
-						<div className="patient-extra">ID: {patient._id}</div>
-					</div>
-				) : (
-					<div className="patient-loading">Loading patient information…</div>
-				)}
+					) : (
+						<div className="patient-loading">Loading patient information…</div>
+						)}
 			</section>
 
 			<main className="myreports-list">

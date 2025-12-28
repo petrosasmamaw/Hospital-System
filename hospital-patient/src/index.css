@@ -443,6 +443,11 @@
 .patient-meta { color:var(--hosp-muted); font-size:0.95rem }
 .patient-extra { color:var(--hosp-muted); font-size:0.85rem }
 
+.patient-blood { margin-top:8px; display:flex; align-items:center; gap:8px }
+.blood-badge { background: linear-gradient(90deg, #fff7ed, #fff1f2); color:#7c2d12; padding:6px 10px; border-radius:999px; font-weight:700; border:1px solid rgba(124,45,18,0.06) }
+.patient-history { margin-top:10px; background:#fbfdff; padding:10px; border-radius:10px; border:1px solid rgba(15,23,42,0.03) }
+.patient-history p { margin:6px 0 0 0; color:#334155 }
+
 .myreports-list { margin-top:18px }
 .reports-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:12px }
 .report-card { display:flex; justify-content:space-between; gap:12px; padding:14px; background: linear-gradient(180deg,#ffffff,#fbfdff); border-radius:12px; box-shadow:var(--hosp-shadow); border:1px solid rgba(15,23,42,0.03) }
@@ -457,6 +462,26 @@
 @media (max-width:700px) {
   .report-card { flex-direction:column; align-items:flex-start }
   .report-right { align-items:flex-start }
+}
+
+/* Profile styles */
+.profile-root { margin: 1.5rem; font-family: 'Segoe UI', Roboto, Arial, sans-serif; color: var(--hosp-text) }
+.profile-header { margin-bottom: 14px }
+.profile-sub { color: var(--hosp-muted) }
+.profile-main { display:flex; gap:16px }
+.profile-card { background: white; padding: 18px; border-radius: 12px; box-shadow: var(--hosp-shadow); flex:1; border:1px solid rgba(15,23,42,0.03) }
+.profile-form { display:flex; flex-direction:column; gap:12px }
+.form-row { display:flex; flex-direction:column }
+.form-row.full { grid-column: 1 / -1 }
+.form-row label { font-size: 0.9rem; color: var(--hosp-muted); margin-bottom:6px }
+.form-row input, .form-row select, .form-row textarea { padding:10px 12px; border-radius:10px; border:1px solid rgba(15,23,42,0.06); font-size:0.95rem }
+.form-row textarea { min-height:120px; resize:vertical }
+.form-actions { display:flex; gap:12px; justify-content:flex-end }
+.btn-primary { background: linear-gradient(90deg,var(--hosp-blue),var(--hosp-blue-dark)); color:white; padding:10px 16px; border-radius:10px; border:none; font-weight:700; cursor:pointer }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(26,115,232,0.14) }
+
+@media (max-width:900px) {
+  .profile-main { flex-direction:column }
 }
 
 @media (max-width: 700px) {
