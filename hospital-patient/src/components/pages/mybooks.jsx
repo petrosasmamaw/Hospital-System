@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fetchBooksByPatientId } from "../slices/slice/bookSlice";
-import { fetchDoctorById } from "../slices/slice/doctorSlice";
+import { fetchDoctorByUserId } from "../slices/slice/doctorSlice";
 import book2 from "../../assets/book.jpg";
 import { motion } from "framer-motion";
 
@@ -29,8 +29,8 @@ export default function MyBooks({ user }) {
 		const ids = [...new Set(books.map((b) => b.DoctorId).filter(Boolean))];
 
 		ids.forEach((id) => {
-			const exists = doctorsState.doctors.find((d) => d._id === id);
-			if (!exists) dispatch(fetchDoctorById(id));
+			const exists = doctorsState.doctors.find((d) => d.userId === id || d._id === id);
+			if (!exists) dispatch(fetchDoctorByUserId(id));
 		});
 	}, [books, doctorsState.doctors, dispatch]);
 
@@ -67,7 +67,7 @@ export default function MyBooks({ user }) {
 				<div className="mybooks-grid">
 					{books?.map((b) => {
 						const doc = doctorsState.doctors.find(
-							(d) => d._id === b.DoctorId
+							(d) => d.userId === b.DoctorId || d._id === b.DoctorId
 						);
 
 						return (

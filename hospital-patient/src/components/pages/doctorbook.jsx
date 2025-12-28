@@ -69,7 +69,7 @@ export default function DoctorBook({ user }) {
                       if (!user) return navigate('/login');
                       const patientId = user.id || user._id;
                       try {
-                        await dispatch(createBook({ patientId, DoctorId: doc._id })).unwrap();
+                        await dispatch(createBook({ patientId, DoctorId: doc.userId })).unwrap();
                         window.alert('Booking successful');
                         navigate('/mybooks');
                       } catch (err) {

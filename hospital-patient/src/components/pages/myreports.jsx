@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { getPatientByUserId } from "../slices/slice/patientSlice";
 import { fetchReportsByPatientId } from "../slices/slice/reportSlice";
-import { fetchDoctorById } from "../slices/slice/doctorSlice";
+import { fetchDoctorByUserId } from "../slices/slice/doctorSlice";
 import reportImg from "../../assets/report.jpg";
 
 export default function MyReports({ user }) {
@@ -36,7 +36,7 @@ export default function MyReports({ user }) {
 
 	// fetch doctors
 	useEffect(() => {
-		if (doctorId) dispatch(fetchDoctorById(doctorId));
+		if (doctorId) dispatch(fetchDoctorByUserId(doctorId));
 
 		if (reportsState.reports.length > 0) {
 			const ids = [...new Set(
@@ -46,8 +46,8 @@ export default function MyReports({ user }) {
 			)];
 
 			ids.forEach((id) => {
-				const exists = doctorsState.doctors.find((d) => d._id === id);
-				if (!exists) dispatch(fetchDoctorById(id));
+				const exists = doctorsState.doctors.find((d) => d.userId === id || d._id === id);
+				if (!exists) dispatch(fetchDoctorByUserId(id));
 			});
 		}
 	}, [dispatch, doctorId, reportsState.reports, doctorsState.doctors]);
@@ -111,7 +111,7 @@ export default function MyReports({ user }) {
 					{reportsState.reports.map((r) => {
 						const docId = r.DoctorId || r.doctorId || doctorId;
 						const doc = doctorsState.doctors.find(
-							(d) => d._id === docId
+							(d) => d.userId === docId || d._id === docId
 						);
 
 						return (
