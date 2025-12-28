@@ -412,6 +412,7 @@
 
 .mybooks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin: 1rem 0 }
 .book-card { display: flex; justify-content: space-between; align-items: center; background: linear-gradient(180deg, #ffffff, #fbfdff); padding: 16px; border-radius: 12px; box-shadow: var(--hosp-shadow); border: 1px solid rgba(15,23,42,0.03); }
+.book-card { cursor: pointer }
 .book-card-left { max-width: 70%; }
 .book-date { font-size: 0.9rem; color: var(--hosp-muted); margin-bottom: 6px }
 .book-title { margin: 0; font-size: 1.05rem; color: var(--hosp-blue-dark) }
@@ -429,6 +430,34 @@
 /* Book button */
 .book-btn { background: linear-gradient(90deg,var(--hosp-blue),var(--hosp-blue-dark)); color: white; padding:8px 14px; border-radius:10px; border:none; cursor:pointer; font-weight:700 }
 .book-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,115,232,0.18) }
+
+/* MyReports styles */
+.myreports-root { margin: 1.5rem; font-family: 'Segoe UI', Roboto, Arial, sans-serif; color: var(--hosp-text) }
+.myreports-header { display:flex; gap:16px; align-items:center; padding:12px; border-radius:12px; background: linear-gradient(90deg, rgba(26,115,232,0.06), rgba(46,204,113,0.03)); }
+.myreports-header img { width:96px; height:96px; object-fit:cover; border-radius:12px }
+.myreports-header-info h1 { margin:0; font-size:1.6rem; color:var(--hosp-blue-dark) }
+.myreports-sub { margin:6px 0 0 0; color:var(--hosp-muted) }
+
+.myreports-patient { margin-top:14px }
+.patient-card { display:flex; justify-content:space-between; align-items:center; padding:12px; border-radius:10px; background:white; box-shadow:var(--hosp-shadow); border:1px solid rgba(15,23,42,0.03) }
+.patient-meta { color:var(--hosp-muted); font-size:0.95rem }
+.patient-extra { color:var(--hosp-muted); font-size:0.85rem }
+
+.myreports-list { margin-top:18px }
+.reports-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:12px }
+.report-card { display:flex; justify-content:space-between; gap:12px; padding:14px; background: linear-gradient(180deg,#ffffff,#fbfdff); border-radius:12px; box-shadow:var(--hosp-shadow); border:1px solid rgba(15,23,42,0.03) }
+.report-left { max-width:68% }
+.report-title { font-weight:700; color:var(--hosp-blue-dark) }
+.report-date { color:var(--hosp-muted); font-size:0.9rem; margin-top:6px }
+.report-desc { margin-top:10px; color:#334155 }
+.report-right { display:flex; flex-direction:column; justify-content:center; align-items:flex-end }
+.report-doctor .doc-name { font-weight:700 }
+.doc-meta { color:var(--hosp-muted); font-size:0.9rem }
+
+@media (max-width:700px) {
+  .report-card { flex-direction:column; align-items:flex-start }
+  .report-right { align-items:flex-start }
+}
 
 @media (max-width: 700px) {
   .mybooks-hero-overlay { padding: 1.25rem }
