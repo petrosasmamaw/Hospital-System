@@ -186,7 +186,7 @@
 .doctor-profile-form .form-row { display:flex; flex-direction:column }
 .doctor-profile-form .form-row.full { grid-column: 1 / -1 }
 .doctor-profile-form label { font-size:0.9rem; color:var(--hosp-muted); margin-bottom:6px }
-.doctor-profile-form input, .doctor-profile-form select, .doctor-profile-form textarea { padding:10px 12px; border-radius:10px; border:1px solid rgba(15,23,42,0.06); font-size:0.95rem }
+.doctor-profile-form input, .doctor-profile-form select, .doctor-profile-form textarea { width:100%; box-sizing:border-box; padding:10px 12px; border-radius:10px; border:1px solid rgba(15,23,42,0.06); font-size:0.95rem }
 .doctor-profile-form textarea { min-height:120px; resize:vertical }
 .form-actions { display:flex; justify-content:flex-end }
 

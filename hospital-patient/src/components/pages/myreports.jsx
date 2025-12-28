@@ -132,7 +132,7 @@ export default function MyReports({ user }) {
 											: "-"}
 									</div>
 									<p className="report-desc">
-										{r.notes || "No description provided."}
+										{r.report || "No description provided."}
 									</p>
 								</div>
 
