@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import book2 from "../../assets/book.jpg";
 import { motion } from "framer-motion";
@@ -7,6 +8,7 @@ import { getPatientByUserId } from "../slices/slice/patientSlice";
 
 export default function BooksList({ user }) {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const books = useSelector((s) => s.books.books || []);
 	const patients = useSelector((s) => s.patients.patients || []);
 
@@ -87,6 +89,12 @@ export default function BooksList({ user }) {
 								</div>
 								<div className="book-actions">
 									<button className="btn-ghost">View</button>
+									<button
+										className="btn-primary"
+										onClick={() => navigate(`/room?patientId=${book.patientId}`)}
+									>
+										Create Room
+									</button>
 								</div>
 							</motion.div>
 						))

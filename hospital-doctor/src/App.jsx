@@ -5,7 +5,6 @@ import { fetchSession } from "./components/slices/slice/authSlice";
 
 import BooksList from "./components/pages/booksList.jsx";
 import Home from "./components/pages/home.jsx";
-import Reports from "./components/pages/reports.jsx";
 import Room from "./components/pages/room.jsx";
 import Login from "./components/pages/login.jsx";
 import Register from "./components/pages/register.jsx";
@@ -17,7 +16,6 @@ function AppRoutes({ user }) {
 		<Routes>
 			<Route path="/" element={user ? <Home user={user} /> : <Navigate to="/login" replace />} />
 			<Route path="/books" element={user ? <BooksList user={user} /> : <Navigate to="/login" replace />} />
-			<Route path="/reports" element={user ? <Reports user={user} /> : <Navigate to="/login" replace />} />
 			<Route path="/room" element={user ? <Room user={user} /> : <Navigate to="/login" replace />} />
             <Route path="/profile" element={user ? <Profile user={user} /> : <Navigate to="/login" replace />} />
 			<Route path="/login" element={!user ? <Login /> : <Navigate to="/" replace />} />
