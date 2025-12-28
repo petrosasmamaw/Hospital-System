@@ -398,6 +398,46 @@
   height: 80px;
 }
 
+/* MyBooks Page Styles */
+.mybooks-root { font-family: 'Segoe UI', Roboto, Arial, sans-serif; color: var(--hosp-text); }
+.mybooks-header { position: relative; height: 260px; overflow: hidden; border-radius: 12px; margin: 2rem 1.5rem; }
+.mybooks-hero { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6) saturate(1.05); display:block }
+.mybooks-hero-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 2rem 3rem; color: white; }
+.mybooks-hero-overlay h1 { font-size: 2.4rem; margin: 0 0 8px 0; letter-spacing: -0.5px; }
+.mybooks-hero-overlay p { margin: 0; max-width: 720px; opacity: 0.95; font-size: 1.05rem }
+
+.mybooks-content { padding: 1.5rem; margin-top: 0.5rem }
+.mybooks-loading, .mybooks-error, .mybooks-empty { text-align: center; padding: 1rem; color: var(--hosp-muted) }
+.mybooks-error { color: #9b1c1c; background: #fff1f0; border-radius: 10px }
+
+.mybooks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin: 1rem 0 }
+.book-card { display: flex; justify-content: space-between; align-items: center; background: linear-gradient(180deg, #ffffff, #fbfdff); padding: 16px; border-radius: 12px; box-shadow: var(--hosp-shadow); border: 1px solid rgba(15,23,42,0.03); }
+.book-card-left { max-width: 70%; }
+.book-date { font-size: 0.9rem; color: var(--hosp-muted); margin-bottom: 6px }
+.book-title { margin: 0; font-size: 1.05rem; color: var(--hosp-blue-dark) }
+.book-desc { margin: 8px 0 0 0; color: #475569; font-size: 0.95rem }
+.book-card-right { display: flex; align-items: center; gap: 8px }
+.status { padding: 8px 12px; border-radius: 999px; font-weight:700; font-size:0.85rem; color:white }
+.status.pending { background: #f59e0b }
+.status.confirmed { background: var(--hosp-green) }
+.status.cancelled { background: #ef4444 }
+
+/* Doctor info inside book card */
+.book-doctor-cat { font-size: 0.9rem; color: var(--hosp-muted); margin-top: 6px }
+.book-doctor-desc { margin-top: 8px; color: #334155; font-size: 0.95rem }
+
+/* Book button */
+.book-btn { background: linear-gradient(90deg,var(--hosp-blue),var(--hosp-blue-dark)); color: white; padding:8px 14px; border-radius:10px; border:none; cursor:pointer; font-weight:700 }
+.book-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,115,232,0.18) }
+
+@media (max-width: 700px) {
+  .mybooks-hero-overlay { padding: 1.25rem }
+  .mybooks-hero-overlay h1 { font-size: 1.6rem }
+  .mybooks-grid { grid-template-columns: 1fr }
+  .book-card { flex-direction: column; align-items: flex-start }
+  .book-card-right { margin-top: 12px; width: 100%; display:flex; justify-content:flex-end }
+}
+
 /* RESPONSIVE */
 @media (max-width: 900px) {
   .doctors-info-section {

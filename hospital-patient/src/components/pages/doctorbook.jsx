@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
 import { motion } from "motion/react";
 import { useDispatch, useSelector } from "react-redux";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { fetchDoctorsByCategory } from "../slices/slice/doctorSlice";
+import { createBook } from "../slices/slice/bookSlice";
 
-export default function DoctorBook() {
+export default function DoctorBook({ user }) {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const category = searchParams.get("category");
+  const navigate = useNavigate();
 
   const { doctors, loading, error } = useSelector(
     (state) => state.doctors
@@ -60,6 +62,24 @@ export default function DoctorBook() {
               >
                 {doc.status}
               </span>
+                <div style={{marginTop:12}}>
+                  <button
+                    className="book-btn"
+                    onClick={async () => {
+                      if (!user) return navigate('/login');
+                      const patientId = user.id || user._id;
+                      try {
+                        await dispatch(createBook({ patientId, DoctorId: doc._id })).unwrap();
+                        window.alert('Booking successful');
+                        navigate('/mybooks');
+                      } catch (err) {
+                        window.alert('Booking failed: ' + (err?.message || err));
+                      }
+                    }}
+                  >
+                    Book
+                  </button>
+                </div>
             </div>
           </motion.div>
         ))}
