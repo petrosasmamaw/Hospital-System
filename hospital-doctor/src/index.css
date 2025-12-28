@@ -149,3 +149,63 @@
     display: none; /* Hide welcome message on small tablets */
   }
 }
+
+/* Doctor Home Page */
+.doctor-home { font-family: 'Segoe UI', Roboto, Arial, sans-serif; color: var(--hosp-text); }
+.doctor-hero { position: relative; height: 56vh; border-radius: 14px; overflow: hidden; margin: 1.5rem; }
+.hero-image { width:100%; height:100%; object-fit:cover; filter: saturate(0.95) contrast(0.98); display:block }
+.hero-overlay { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; padding:3rem; background: linear-gradient(180deg, rgba(6,8,24,0.12), rgba(6,8,24,0.18)); color: white }
+.hero-overlay h1 { margin:0; font-size:2.6rem; letter-spacing:-0.6px }
+.hero-overlay p { margin-top:10px; max-width:720px; color: rgba(255,255,255,0.9) }
+.hero-actions { margin-top:18px; display:flex; gap:12px }
+.btn-primary { background: linear-gradient(90deg,var(--hosp-blue),var(--hosp-blue-dark)); color: white; padding:10px 16px; border-radius:10px; border:none; font-weight:700; cursor:pointer }
+.btn-ghost { background: rgba(255,255,255,0.12); color: white; padding:10px 16px; border-radius:10px; border:1px solid rgba(255,255,255,0.08); cursor:pointer }
+
+.doctor-cards { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:18px; padding: 2rem 1.5rem; margin-top:6px }
+.doc-card { background: white; border-radius:12px; overflow:hidden; box-shadow: var(--hosp-shadow); border:1px solid rgba(15,23,42,0.03); display:flex; gap:12px; align-items:center; padding:12px }
+.doc-card img { width:100px; height:100px; object-fit:cover; border-radius:10px }
+.doc-card-body h3 { margin:0; color:var(--hosp-blue-dark) }
+.doc-card-body p { margin:6px 0 0 0; color:var(--hosp-muted) }
+
+.doctor-gallery { padding: 2rem 1.5rem; }
+.gallery-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap:12px }
+.gallery-grid img { width:100%; height:140px; object-fit:cover; border-radius:10px; box-shadow: var(--hosp-shadow); }
+
+@media (max-width: 700px) {
+  .hero-overlay h1 { font-size: 1.6rem }
+  .doctor-hero { height: 42vh }
+  .doc-card { flex-direction: row; }
+}
+
+/* Doctor profile styles */
+.doctor-profile-root { margin: 1.5rem }
+.doctor-profile-header h1 { margin:0; font-size:1.6rem }
+.profile-sub { color: var(--hosp-muted); margin-top:6px }
+.doctor-profile-main { margin-top:12px }
+.doctor-profile-form { background:white; padding:18px; border-radius:12px; box-shadow:var(--hosp-shadow); border:1px solid rgba(15,23,42,0.03); display:flex; flex-direction:column; gap:12px }
+.doctor-profile-form .form-row { display:flex; flex-direction:column }
+.doctor-profile-form .form-row.full { grid-column: 1 / -1 }
+.doctor-profile-form label { font-size:0.9rem; color:var(--hosp-muted); margin-bottom:6px }
+.doctor-profile-form input, .doctor-profile-form select, .doctor-profile-form textarea { padding:10px 12px; border-radius:10px; border:1px solid rgba(15,23,42,0.06); font-size:0.95rem }
+.doctor-profile-form textarea { min-height:120px; resize:vertical }
+.form-actions { display:flex; justify-content:flex-end }
+
+@media (max-width:900px) {
+  .doctor-profile-form { padding:14px }
+}
+
+/* profile image + meta */
+.doctor-top { display:flex; gap:14px; align-items:center }
+.doctor-image { width:96px; height:96px; object-fit:cover; border-radius:12px; box-shadow:var(--hosp-shadow); border:1px solid rgba(15,23,42,0.04) }
+.doctor-image.placeholder { display:flex; align-items:center; justify-content:center; background:#f8fafc; color:var(--hosp-muted) }
+.doctor-top-meta { display:flex; flex-direction:column }
+.doctor-status { padding:6px 10px; border-radius:999px; font-weight:700; width:fit-content; margin-bottom:8px }
+.doctor-status.active { background: var(--hosp-green); color:white }
+.doctor-status.pending { background: #f59e0b; color:white }
+.doctor-name { font-weight:800; color:var(--hosp-blue-dark) }
+.doctor-cat { color:var(--hosp-muted) }
+
+/* pending form styling */
+.doctor-profile-form.pending { border:1px solid rgba(245,158,11,0.18); box-shadow: 0 8px 30px rgba(245,158,11,0.06) }
+
+.btn-ghost { background: transparent; border:1px solid rgba(15,23,42,0.06); padding:8px 14px; border-radius:10px; cursor:pointer }

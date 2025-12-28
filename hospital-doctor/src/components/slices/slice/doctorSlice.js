@@ -41,7 +41,8 @@ export const createDoctor = createAsyncThunk(
       for (const key of ["name","userId","title","status","specialization","education","description","phone","category"]) {
         formData.append(key, doctorData[key]);
       }
-      formData.append("image", doctorData.image);
+      // backend multer expects the file field named "Image"
+      formData.append("Image", doctorData.image);
       dataToSend = formData;
     }
 
@@ -66,7 +67,8 @@ export const updateDoctor = createAsyncThunk(
       for (const key of ["name","userId","title","status","specialization","education","description","phone","category"]) {
         formData.append(key, doctorData[key]);
       }
-      formData.append("image", doctorData.image);
+      // backend multer expects the file field named "Image"
+      formData.append("Image", doctorData.image);
       dataToSend = formData;
     }
 

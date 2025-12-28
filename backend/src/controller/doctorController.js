@@ -50,6 +50,8 @@ export const getDoctorByUserId = async (req, res) => {
 export const updateDoctor = async (req, res) => {
     const { id } = req.params;
     try {
+        if (req.file && req.file.path) req.body.image = req.file.path;
+
         const doctor = await Doctor.findByIdAndUpdate(
             id,
             req.body,
@@ -83,12 +85,26 @@ export const updateDoctorStatus = async (req, res) => {
 };
 export const createDoctor = async (req, res) => {
     try {
-        const newDoctor = new Doctor(req.body); 
+        const { userId } = req.body;
+
+        // Prevent duplicate doctor profiles for same user
+        if (userId) {
+            const exists = await Doctor.findOne({ userId });
+            if (exists) return res.status(400).json({ message: 'Doctor profile already exists for this user' });
+        }
+
+        // If multer uploaded a file via CloudinaryStorage, attach its path
+        if (req.file && req.file.path) {
+            req.body.image = req.file.path;
+        }
+
+        const newDoctor = new Doctor(req.body);
         const savedDoctor = await newDoctor.save();
         res.status(201).json(savedDoctor);
     } catch (error) {
-        res.status(500).json({ message: "Error creating doctor", error });
-    }   
+        console.error('createDoctor error:', error);
+        res.status(500).json({ message: "Error creating doctor", error: error.message || error });
+    }
 };
 
 export const deleteDoctor = async (req, res) => {   
