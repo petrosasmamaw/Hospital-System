@@ -1,88 +1,100 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDoctorByUserId } from "../slices/slice/doctorSlice";
-import { fetchBooksByDoctorId, deleteBook } from "../slices/slice/bookSlice";
-import { getPatientsById } from "../slices/slice/patientSlice";
-import { getPatientsById } from "../slices/slice/patientSlice";
+import book2 from "../../assets/book.jpg";
+import { motion } from "framer-motion";
+import { fetchBooks, fetchBooksByDoctorId } from "../slices/slice/bookSlice";
+import { getPatientByUserId } from "../slices/slice/patientSlice";
 
 export default function BooksList({ user }) {
 	const dispatch = useDispatch();
-	const doctorsState = useSelector((s) => s.doctors || { doctors: [], loading: false });
-	const booksState = useSelector((s) => s.books || { books: [], loading: false });
-	const patientsState = useSelector((s) => s.patients || { patients: [], loading: false });
-
-	const userId = user && (user.id || user._id);
+	const books = useSelector((s) => s.books.books || []);
+	const patients = useSelector((s) => s.patients.patients || []);
 
 	useEffect(() => {
-		if (!userId) return;
-		dispatch(fetchDoctorByUserId(userId));
-	}, [dispatch, userId]);
-
-	const doctor = doctorsState.doctors.find((d) => d.userId === userId) || null;
-
-	useEffect(() => {
-		if (doctor && doctor._id) dispatch(fetchBooksByDoctorId(doctor._id));
-	}, [dispatch, doctor]);
-
-	useEffect(() => {
-		if (!booksState.books || booksState.books.length === 0) return;
-		const ids = [...new Set(booksState.books.map((b) => b.patientId).filter(Boolean))];
-		ids.forEach((id) => {
-			const exists = patientsState.patients.find((p) => p._id === id);
-			if (!exists) dispatch(getPatientsById(id));
-		});
-	}, [booksState.books, patientsState.patients, dispatch]);
-
-	// Ensure patient data for displayed bookings
-	useEffect(() => {
-		if (!booksState.books || booksState.books.length === 0) return;
-		const ids = [...new Set(booksState.books.map((b) => b.patientId).filter(Boolean))];
-		ids.forEach((id) => {
-			const exists = patientsState.patients.find((p) => p._id === id);
-			if (!exists) dispatch(getPatientsById(id));
-		});
-	}, [booksState.books, patientsState.patients, dispatch]);
-
-	const handleDelete = async (id) => {
-		if (!window.confirm('Delete this booking?')) return;
-		try {
-			await dispatch(deleteBook(id)).unwrap();
-			window.alert('Deleted');
-		} catch (err) {
-			window.alert('Delete failed: ' + (err?.message || err));
+		if (user && (user._id || user.id)) {
+			const doctorId = user._id || user.id;
+			dispatch(fetchBooksByDoctorId(doctorId));
+		} else {
+			dispatch(fetchBooks());
 		}
+	}, [user, dispatch]);
+
+	useEffect(() => {
+		const loadPatients = async () => {
+			if (!books || books.length === 0) return;
+			await Promise.all(
+				books.map(async (b) => {
+					try {
+						const already = patients.find((p) => p.userId === b.patientId);
+						if (!already) {
+							await dispatch(getPatientByUserId(b.patientId)).unwrap();
+						}
+					} catch (e) {
+					}
+				})
+			);
+		};
+		loadPatients();
+	}, [books, patients, dispatch]);
+
+	const renderPatientFor = (book) => {
+		const p = patients.find((x) => x.userId === book.patientId);
+		if (!p) return <div className="book-patient">Patient data not loaded</div>;
+		return (
+			<div>
+				<div className="book-patient-name">{p.name}</div>
+				<div className="book-patient-meta">Age: {p.age || "—"} • {p.gender || "—"}</div>
+				<div className="book-patient-meta">Phone: {p.phone}</div>
+				<div className="book-patient-meta">Blood: {p.bloodType}</div>
+			</div>
+		);
 	};
 
 	return (
 		<div className="books-list-root">
-			<header className="books-header">
-				<h1>My Appointments</h1>
-				<p className="books-sub">Appointments booked with patients — fetched for profile.</p>
-			</header>
+			<div className="doctor-hero">
+				<img className="hero-image" src={book2} alt="books hero" />
+				<div className="hero-overlay">
+					<h1>Bookings Overview</h1>
+					<p>
+						This section shows recent bookings made by patients. For each booking
+						the patient's profile is retrieved (name, age, contact, blood
+						type) so doctors can quickly review key information before the
+						appointment.
+					</p>
+				</div>
+			</div>
 
-			<main className="books-list">
-				{booksState.loading && <div className="books-loading">Loading…</div>}
-				{booksState.books.length === 0 && <div className="books-empty">No appointments found.</div>}
+			<div className="books-header" style={{ margin: "1.2rem 1.5rem 0" }}>
+				<h1>My Bookings</h1>
+				<div className="books-sub">A quick list of recent patient bookings</div>
+			</div>
 
-				<div className="books-grid">
-					{booksState.books.map((b) => {
-						const patient = patientsState.patients.find((p) => p._id === b.patientId) || null;
-						return (
-							<div key={b._id} className="book-item">
+			<div className="books-list">
+				<div className="books-grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", padding: 12 }}>
+					{books && books.length ? (
+						books.map((book) => (
+							<motion.div
+								key={book._id}
+								className="book-item"
+								whileHover={{ y: -4 }}
+								transition={{ type: "spring", stiffness: 300 }}
+							>
 								<div className="book-main">
-									<div className="book-date">{b.date ? new Date(b.date).toLocaleString() : '-'}</div>
-									<div className="book-patient-name">{patientsState.patients.find((p) => p._id === b.patientId)?.name || 'Unknown Patient'}</div>
-									<div className="book-patient-meta">{patientsState.patients.find((p) => p._id === b.patientId) ? `${patientsState.patients.find((p) => p._id === b.patientId).age || ''} • ${patientsState.patients.find((p) => p._id === b.patientId).gender || ''} • ${patientsState.patients.find((p) => p._id === b.patientId).phone || ''}` : b.patientId}</div>
-									<div className="book-notes">{b.notes || '—'}</div>
+									<div className="book-date">{new Date(book.createdAt).toLocaleString()}</div>
+									{renderPatientFor(book)}
+									<div className="book-notes">Booking ID: {book._id}</div>
 								</div>
 								<div className="book-actions">
-									<button className="btn-ghost" onClick={() => handleDelete(b._id)}>Delete</button>
+									<button className="btn-ghost">View</button>
 								</div>
-							</div>
-						);
-					})}
+							</motion.div>
+						))
+					) : (
+						<div style={{ padding: 18, color: "var(--hosp-muted)" }}>No bookings found.</div>
+					)}
 				</div>
-			</main>
+			</div>
 		</div>
 	);
 }
