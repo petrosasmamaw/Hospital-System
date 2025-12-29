@@ -89,7 +89,7 @@ export const updateDoctorStatus = createAsyncThunk(
   }
 );
 
-// Delete doctor
+// Delete doctor 
 export const deleteDoctor = createAsyncThunk(
   "doctors/deleteDoctor",
   async (id) => {
