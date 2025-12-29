@@ -28,6 +28,14 @@ export const fetchReportsByPatientId = createAsyncThunk(
   }
 );
 
+export const fetchReportsByPatientAndDoctor = createAsyncThunk(
+  "reports/fetchByPatientAndDoctor",
+  async ({ patientId, doctorId }) => {
+    const response = await axios.get(`${CLIENTAPI_URL}patient/${patientId}/doctor/${doctorId}`);
+    return response.data;
+  }
+);
+
 export const fetchReportsByDoctorId = createAsyncThunk(
   "reports/fetchByDoctorId",
   async (doctorId) => {
@@ -112,6 +120,20 @@ const reportSlice = createSlice({
         state.reports = action.payload;
       })
       .addCase(fetchReportsByPatientId.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      // Fetch reports by patient AND doctor
+      .addCase(fetchReportsByPatientAndDoctor.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchReportsByPatientAndDoctor.fulfilled, (state, action) => {
+        state.loading = false;
+        // keep compatibility: API may return array or single item
+        state.reports = Array.isArray(action.payload) ? action.payload : [action.payload];
+      })
+      .addCase(fetchReportsByPatientAndDoctor.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       })

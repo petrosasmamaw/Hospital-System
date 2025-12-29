@@ -80,7 +80,7 @@ export default function MyBooks({ user }) {
 								transition={{ duration: 0.35 }}
 								onClick={() => {
 									if (!userId) return navigate("/login");
-									navigate(`/myreports?doctorId=${b.DoctorId}`);
+									navigate(`/myspecificreports?doctorId=${b.DoctorId}`);
 								}}
 							>
 								<div className="book-card-left">

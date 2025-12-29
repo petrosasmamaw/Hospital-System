@@ -38,6 +38,16 @@ export const getReportsByDoctorId = async (req, res) => {
         res.status(500).json({ message: "Error fetching reports", error });
     }
 };
+
+export const getReportsByPatientAndDoctor = async (req, res) => {
+    const { patientId, doctorId } = req.params;
+    try {
+        const reports = await Report.find({ patientId, doctorId });
+        res.status(200).json(reports);
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching reports", error });
+    }
+};
 export const getReportById = async (req, res) => {
     const { id } = req.params;
     try {
