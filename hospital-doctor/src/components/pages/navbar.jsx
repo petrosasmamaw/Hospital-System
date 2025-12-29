@@ -20,6 +20,7 @@ export default function Navbar({ user }) {
 				<>
 					<Link to="/">Home</Link>
 					<Link to="/books">Books</Link>
+					<Link to="/report">Reports</Link>
 					<div style={{ flex: 1 }} />
 					<span style={{ color: "var(--muted)" }}>Welcome, {user.name || user.email}</span>
                     <Link to="/profile">Profile</Link>

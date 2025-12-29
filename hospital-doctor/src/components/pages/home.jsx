@@ -48,7 +48,7 @@ export default function Home() {
 						secure interface built for clinicians.
 					</motion.p>
 					<div className="hero-actions">
-						<button className="btn-primary" onClick={() => navigate('/reports')}>View Reports</button>
+						<button className="btn-primary" onClick={() => navigate('/report')}>View Reports</button>
 						<button className="btn-ghost" onClick={() => navigate('/books')}>My Appointments</button>
 					</div>
 				</div>
