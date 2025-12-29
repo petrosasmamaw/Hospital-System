@@ -84,7 +84,7 @@ export const updateDoctor = createAsyncThunk(
 export const updateDoctorStatus = createAsyncThunk(
   "doctors/updateDoctorStatus",
   async ({ id, status }) => {
-    const response = await axios.put(`${CLIENTAPI_URL}status/${id}`, { status });
+    const response = await axios.patch(`${CLIENTAPI_URL}${id}/status`, { status });
     return response.data;
   }
 );
