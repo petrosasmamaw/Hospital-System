@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchReportsByDoctorId, createReport, updateReport } from "../slices/slice/reportSlice";
+import { fetchBooksByPatientId, updateBook } from "../slices/slice/bookSlice";
 
 export default function Room({ user }) {
 	const [searchParams] = useSearchParams();
@@ -37,6 +38,24 @@ export default function Room({ user }) {
 		await dispatch(fetchReportsByDoctorId(doctorId));
 	};
 
+	const handleCreateAndCheckin = async () => {
+		if (!doctorId || !patientId) return;
+		// create report
+		await dispatch(createReport({ patientId, doctorId, report: text }));
+		await dispatch(fetchReportsByDoctorId(doctorId));
+
+		try {
+			// fetch bookings for this patient to find the booking for this doctor
+			const booksForPatient = await dispatch(fetchBooksByPatientId(patientId)).unwrap();
+			const bookToUpdate = (booksForPatient || []).find((b) => b.DoctorId === doctorId || b.DoctorId === doctorId);
+			if (bookToUpdate) {
+				await dispatch(updateBook({ bookId: bookToUpdate._id, updatedData: { status: "checkedIn" } }));
+			}
+		} catch (e) {
+			console.error('Failed to set booking to checkedIn', e);
+		}
+	};
+
 	const handleUpdate = async () => {
 		if (!currentReport) return;
 		await dispatch(updateReport({ reportId: currentReport._id, updatedData: { report: text } }));
@@ -66,7 +85,7 @@ export default function Room({ user }) {
 						{currentReport ? (
 							<button className="btn-primary" onClick={handleUpdate}>Update Report</button>
 						) : (
-							<button className="btn-primary" onClick={handleCreate}>Create Report</button>
+							<button className="btn-primary" onClick={handleCreateAndCheckin}>Create Report</button>
 						)}
 					</div>
 					{currentReport && (

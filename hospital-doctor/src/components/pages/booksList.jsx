@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import book2 from "../../assets/book.jpg";
 import { motion } from "framer-motion";
-import { fetchBooks, fetchBooksByDoctorId } from "../slices/slice/bookSlice";
+import { fetchBooks, fetchBooksByDoctorId, updateBook } from "../slices/slice/bookSlice";
 import { getPatientByUserId } from "../slices/slice/patientSlice";
 
 export default function BooksList({ user }) {
@@ -73,12 +73,12 @@ export default function BooksList({ user }) {
 			</div>
 
 			<div className="books-list">
-				<div className="books-grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", padding: 12 }}>
+					<div className="books-grid doctor-books-grid">
 					{books && books.length ? (
 						books.map((book) => (
 							<motion.div
 								key={book._id}
-								className="book-item"
+								className="book-item doctor-book-item"
 								whileHover={{ y: -4 }}
 								transition={{ type: "spring", stiffness: 300 }}
 							>
@@ -87,14 +87,36 @@ export default function BooksList({ user }) {
 									{renderPatientFor(book)}
 									<div className="book-notes">Booking ID: {book._id}</div>
 								</div>
+								<div className="book-status-wrap">
+									{(() => {
+										const raw = book.status;
+										const normalized = raw ? raw.toLowerCase() : null;
+										const mapping = {
+											checkedin: "Checked In",
+											waiting: "Waiting",
+											inprogress: "In Progress",
+											"in-progress": "In Progress",
+										};
+										const label = normalized ? mapping[normalized] || raw : "New feature update";
+										const cls = normalized ? normalized.replace(/\s+/g, "") : "feature-update";
+										return <div className={`status ${cls}`}>{label}</div>;
+									})()}
+								</div>
 								<div className="book-actions">
-									<button className="btn-ghost">View</button>
-									<button
-										className="btn-primary"
-										onClick={() => navigate(`/room?patientId=${book.patientId}`)}
-									>
-										Create Room
-									</button>
+														<button
+															className="btn-primary"
+															onClick={async () => {
+																try {
+																	// optimistically update booking status to inProgress
+																	await dispatch(updateBook({ bookId: book._id, updatedData: { status: "inProgress" } })).unwrap();
+																} catch (e) {
+																	console.error('Failed to update booking status', e);
+																}
+																navigate(`/room?patientId=${book.patientId}`);
+															}}
+														>
+															Create Room
+														</button>
 								</div>
 							</motion.div>
 						))

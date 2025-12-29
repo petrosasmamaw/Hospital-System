@@ -48,3 +48,14 @@ export const deleteBook = async (req, res) => {
         res.status(500).json({ message: "Server Error", error });
     }
 };
+
+export const updateBook = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const updated = await Book.findByIdAndUpdate(id, req.body, { new: true });
+        if (!updated) return res.status(404).json({ message: "Booking not found" });
+        res.status(200).json(updated);
+    } catch (error) {
+        res.status(500).json({ message: "Server Error", error });
+    }
+};

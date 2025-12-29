@@ -398,6 +398,18 @@
   height: 80px;
 }
 
+/* Booking status badges */
+.status { display:inline-block; padding:6px 10px; border-radius:999px; font-weight:700; font-size:0.86rem; color:white }
+.status.waiting { background: linear-gradient(90deg, #f59e0b, #f97316); }
+.status.inprogress { background: linear-gradient(90deg, #2563eb, #1e40af); }
+.status.checkedin { background: linear-gradient(90deg, #10b981, #059669); }
+.status.pending { background: linear-gradient(90deg, #94a3b8, #64748b); }
+.status.feature-update { background: linear-gradient(90deg, #7c3aed, #06b6d4); }
+
+/* layout helper for lists that show a large status area */
+.book-card-right { display:flex; align-items:center; justify-content:center; min-width:120px }
+.book-card .status { width:max-content }
+
 /* MyBooks Page Styles */
 .mybooks-root { font-family: 'Segoe UI', Roboto, Arial, sans-serif; color: var(--hosp-text); }
 .mybooks-header { position: relative; height: 260px; overflow: hidden; border-radius: 12px; margin: 2rem 1.5rem; }

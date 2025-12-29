@@ -216,12 +216,29 @@
 .books-sub { color: var(--hosp-muted); margin-top:6px }
 .books-list { margin-top:12px }
 .books-grid { display:grid; gap:12px }
-.book-item { display:flex; justify-content:space-between; align-items:center; padding:12px; background:white; border-radius:10px; box-shadow:var(--hosp-shadow); border:1px solid rgba(15,23,42,0.03) }
-.book-main { display:flex; flex-direction:column }
+.doctor-books-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 12px }
+
+@media (max-width: 900px) {
+  .doctor-books-grid { grid-template-columns: 1fr }
+}
+
+/* Doctor page: stack card content vertically, show status/actions below */
+.doctor-book-item { display:flex; flex-direction:column; align-items:stretch; padding:16px; gap:12px }
+.doctor-book-item .book-main { flex: 1 1 auto; min-width:0 }
+.doctor-book-item .book-status-wrap { order: 2; margin-top: 8px; display:flex; justify-content:flex-start }
+.doctor-book-item .book-actions { order: 3; margin-top: 8px; display:flex; justify-content:flex-end; gap:8px }
+.doctor-book-item .book-actions button { min-width: 120px }
+
+@media (max-width:700px) {
+  .doctor-book-item { padding:12px }
+  .doctor-book-item .book-actions { justify-content: flex-start }
+}
+.book-item { display:flex; justify-content:space-between; align-items:center; padding:12px; background:white; border-radius:10px; box-shadow:var(--hosp-shadow); border:1px solid rgba(15,23,42,0.03); gap:12px; flex-wrap:nowrap }
+.book-main { display:flex; flex-direction:column; flex:1 1 auto; min-width:0 }
 .book-date { font-weight:700; color:var(--hosp-blue-dark) }
 .book-patient { color:var(--hosp-muted); margin-top:6px }
 .book-notes { margin-top:8px; color:#334155 }
-.book-actions { display:flex; gap:8px }
+.book-actions { display:flex; gap:8px; flex-shrink:0 }
 
 .book-patient-name { font-weight:700; color:var(--hosp-blue-dark); margin-top:6px }
 .book-patient-meta { color:var(--hosp-muted); font-size:0.95rem; margin-top:4px }
@@ -230,6 +247,17 @@
   .book-item { flex-direction:column; align-items:flex-start }
   .book-actions { width:100%; display:flex; justify-content:flex-end }
 }
+
+/* Booking status badges */
+.status { display:inline-block; padding:6px 10px; border-radius:999px; font-weight:700; font-size:0.86rem; color:white }
+.status.waiting { background: linear-gradient(90deg, #f59e0b, #f97316); }
+.status.inprogress { background: linear-gradient(90deg, #2563eb, #1e40af); }
+.status.checkedin { background: linear-gradient(90deg, #10b981, #059669); }
+.status.pending { background: linear-gradient(90deg, #94a3b8, #64748b); }
+.status.feature-update { background: linear-gradient(90deg, #7c3aed, #06b6d4); }
+
+.book-status-wrap { display:flex; align-items:center; justify-content:center; flex-shrink:0; min-width:120px }
+.book-item .status { width:max-content }
 
 /* Room / Report page styles */
 .page { margin: 1.5rem; font-family: 'Segoe UI', Roboto, Arial, sans-serif; color: var(--hosp-text) }

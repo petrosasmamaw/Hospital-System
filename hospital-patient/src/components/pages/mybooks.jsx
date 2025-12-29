@@ -100,13 +100,24 @@ export default function MyBooks({ user }) {
 								</div>
 
 								<div className="book-card-right">
-									<span
-										className={`status ${
-											b.status ? b.status.toLowerCase() : "pending"
-										}`}
-									>
-										{b.status || "Pending"}
-									</span>
+									{(() => {
+										const raw = b.status;
+										const normalized = raw ? raw.toLowerCase() : null;
+										const mapping = {
+											checkedin: "Checked In",
+											checkedIn: "Checked In",
+											waiting: "Waiting",
+											inprogress: "In Progress",
+											"in-progress": "In Progress",
+										};
+										const label = normalized ? mapping[normalized] || raw : "New feature update";
+										const cls = normalized ? normalized.replace(/\s+/g, "") : "feature-update";
+										return (
+											<span className={`status ${cls}`}>
+												{label}
+											</span>
+										);
+									})()}
 								</div>
 							</motion.article>
 						);
