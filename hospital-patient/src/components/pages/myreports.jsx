@@ -71,6 +71,12 @@ export default function MyReports({ user }) {
 					<p className="myreports-sub">
 						Secure access to your medical history.
 					</p>
+					{/* Short descriptive paragraph next to the header */}
+					<p className="myreports-highlight">
+						Each report contains clinical observations, diagnoses, prescriptions,
+						and recommended follow-ups — authored by your treating physician
+						and available securely for your review.
+					</p>
 				</div>
 			</header>
 
@@ -151,6 +157,15 @@ export default function MyReports({ user }) {
 					})}
 				</div>
 			</main>
+
+			{/* Centered footer-like paragraph for reports */}
+			<section className="myreports-footer">
+				<p>
+					Reports are private medical records stored securely. If you have any
+					questions about the content, contact your provider for clarifications
+					or next steps.
+				</p>
+			</section>
 		</div>
 	);
 }
