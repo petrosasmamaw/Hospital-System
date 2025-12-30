@@ -114,12 +114,18 @@ a {
 }
 
 .logout-btn {
-  background: var(--danger);
+  background: var(--accent);
   color: white;
   border: none;
   padding: 8px 14px;
   border-radius: var(--radius-sm);
   cursor: pointer;
+  transition: background 0.18s ease, transform 0.12s ease;
+}
+
+.logout-btn:hover {
+  background: #16a34a; /* slightly darker green */
+  transform: translateY(-1px);
 }
 
 /* =========================

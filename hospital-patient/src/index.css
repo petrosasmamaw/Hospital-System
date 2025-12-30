@@ -293,10 +293,24 @@
 
 /* FOOTER INFO */
 .footer-info {
-  background: #0f172a;
-  color: white;
-  padding: 3rem;
+  background: linear-gradient(180deg,#0f172a 0%, #071020 100%);
+  color: #e6eef8;
+  padding: 3.5rem 2rem;
   text-align: center;
+  margin: 2.5rem auto;
+  max-width: 980px;
+  border-radius: 14px;
+  box-shadow: 0 12px 36px rgba(2,6,23,0.45);
+  border: 1px solid rgba(255,255,255,0.04);
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+.footer-info p { margin: 0 auto; max-width: 780px; color: #dbeeff }
+
+@media (max-width: 700px) {
+  .footer-info { padding: 2rem 1rem; border-radius: 10px }
+  .footer-info p { font-size: 0.98rem }
 }
 
 /* RESPONSIVE */

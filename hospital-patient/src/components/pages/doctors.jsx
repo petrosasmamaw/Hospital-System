@@ -44,9 +44,6 @@ export default function Doctors() {
             <motion.div
               key={i}
               className="doctors-category-card"
-              whileHover={{ scale: 1.05 }}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
               onClick={() =>
                 navigate(
                   `/doctor?category=${encodeURIComponent(cat.title)}`
