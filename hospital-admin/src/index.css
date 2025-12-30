@@ -104,13 +104,17 @@ a {
 }
 
 .site-nav a {
-  font-weight: 500;
-  color: var(--muted);
-  transition: color 0.2s;
+  font-weight: 600;
+  color: var(--primary);
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: color 0.18s ease, background 0.18s ease, transform 0.12s ease;
 }
 
 .site-nav a:hover {
-  color: var(--primary);
+  color: var(--primary-dark);
+  background: rgba(37,99,235,0.08);
+  transform: translateY(-1px);
 }
 
 .logout-btn {
