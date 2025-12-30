@@ -88,6 +88,22 @@ a {
   background: var(--primary-dark);
 }
 
+/* Delete button (danger) */
+.btn-delete {
+  background: var(--danger);
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.btn-delete:hover {
+  background: #dc2626; /* darker red */
+  transform: translateY(-1px);
+}
+
 /* =========================
    NAVBAR
 ========================= */

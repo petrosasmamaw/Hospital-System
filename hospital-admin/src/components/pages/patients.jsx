@@ -43,7 +43,7 @@ export default function Patients() {
 							<p className="card-desc">{p.medicalHistory || 'No medical history.'}</p>
 						</div>
 						<div className="card-actions">
-							<button className="btn-ghost" onClick={() => handleDelete(p._id)}>Delete</button>
+							<button className="btn-ghost btn-delete" onClick={() => handleDelete(p._id)}>Delete</button>
 						</div>
 					</motion.article>
 				))}

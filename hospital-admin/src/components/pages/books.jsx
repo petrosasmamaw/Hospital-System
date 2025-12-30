@@ -43,7 +43,7 @@ export default function Books() {
 							<p className="card-desc">Patient: {b.patientId} • Doctor: {b.DoctorId}</p>
 						</div>
 						<div className="card-actions">
-							<button className="btn-ghost" onClick={() => handleDelete(b._id)}>Delete</button>
+							<button className="btn-ghost btn-delete" onClick={() => handleDelete(b._id)}>Delete</button>
 						</div>
 					</motion.article>
 				))}

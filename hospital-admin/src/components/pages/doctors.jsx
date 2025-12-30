@@ -53,7 +53,7 @@ export default function Doctors() {
 							<p className="card-desc">{d.description || 'No bio provided.'}</p>
 						</div>
 						<div className="card-actions">
-							<button className="btn-ghost" onClick={() => handleDelete(d._id)}>Delete</button>
+							<button className="btn-ghost btn-delete" onClick={() => handleDelete(d._id)}>Delete</button>
 							<button className="btn-toggle" onClick={() => handleToggle(d._id, d.status)}>{d.status === 'active' ? 'Set Inactive' : 'Set Active'}</button>
 						</div>
 					</motion.article>
