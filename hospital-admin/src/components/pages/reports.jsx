@@ -43,7 +43,7 @@ export default function Reports() {
 							<p className="card-desc">{r.report || 'No report content.'}</p>
 						</div>
 						<div className="card-actions">
-							<button className="btn-ghost" onClick={() => handleDelete(r._id)}>Delete</button>
+							<button className="btn-ghost btn-delete" onClick={() => handleDelete(r._id)}>Delete</button>
 						</div>
 					</motion.article>
 				))}
