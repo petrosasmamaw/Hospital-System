@@ -248,3 +248,26 @@
   .form-actions { justify-content: stretch; gap:8px }
   .form-actions button { width: 100% }
 }
+
+/* Reports page additions */
+.reports-sub-detail {
+  margin-top: 8px;
+  font-weight: 700;
+  font-size: 0.98rem;
+  /* gradient text */
+  background: linear-gradient(90deg, #7b42ff 0%, #00d4ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.reports-footer { text-align: center; margin-top: 20px }
+.reports-footer .footer-text {
+  margin: 0 auto;
+  max-width: 820px;
+  padding: 8px 12px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #ff7a18 0%, #af002d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

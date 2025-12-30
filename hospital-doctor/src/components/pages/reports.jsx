@@ -17,6 +17,11 @@ const Report = ({ user }) => {
       <div className="books-header">
         <h1>My Reports</h1>
         <p className="books-sub">Reports created by you</p>
+        <p className="reports-sub-detail">
+          A report captures clinical observations, diagnostic results, and
+          recommended follow-ups — concise, verified notes you authored to
+          document patient care and progress.
+        </p>
       </div>
 
       {loading && <p>Loading reports…</p>}
@@ -37,6 +42,13 @@ const Report = ({ user }) => {
           </div>
         ))}
       </div>
+      <section className="reports-footer">
+        <p className="footer-text">
+          Reports are secure clinical records containing observations,
+          diagnoses, and treatment recommendations — review them here and
+          reach out to the care team for clarifications or follow-up actions.
+        </p>
+      </section>
     </div>
   )
 }
