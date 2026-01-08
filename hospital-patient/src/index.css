@@ -293,24 +293,10 @@
 
 /* FOOTER INFO */
 .footer-info {
-  background: linear-gradient(180deg,#0f172a 0%, #071020 100%);
-  color: #e6eef8;
-  padding: 3.5rem 2rem;
+  background: #0f172a;
+  color: white;
+  padding: 3rem;
   text-align: center;
-  margin: 2.5rem auto;
-  max-width: 980px;
-  border-radius: 14px;
-  box-shadow: 0 12px 36px rgba(2,6,23,0.45);
-  border: 1px solid rgba(255,255,255,0.04);
-  line-height: 1.6;
-  font-size: 1.05rem;
-}
-
-.footer-info p { margin: 0 auto; max-width: 780px; color: #dbeeff }
-
-@media (max-width: 700px) {
-  .footer-info { padding: 2rem 1rem; border-radius: 10px }
-  .footer-info p { font-size: 0.98rem }
 }
 
 /* RESPONSIVE */
@@ -412,52 +398,6 @@
   height: 80px;
 }
 
-/* MyReports header highlight and footer styles */
-.myreports-sub {
-  color: var(--hosp-muted);
-  margin-top: 8px;
-}
-.myreports-highlight {
-  display: inline-block;
-  margin-top: 12px;
-  background: linear-gradient(90deg,#ff7ab6,#7c3aed,#06b6d4);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-weight: 700;
-  max-width: 720px;
-}
-
-.myreports-footer {
-  margin: 2.2rem auto 3rem auto;
-  max-width: 980px;
-  text-align: center;
-  background: linear-gradient(180deg, rgba(124,58,237,0.06), rgba(6,182,212,0.04));
-  padding: 18px 22px;
-  border-radius: 12px;
-  border: 1px solid rgba(124,58,237,0.08);
-  color: #0f172a;
-}
-
-.myreports-footer p { margin: 0; color: #0f172a; font-weight:600 }
-
-@media (max-width: 720px) {
-  .myreports-highlight { display:block; font-size:0.98rem }
-  .myreports-footer { padding: 14px 12px }
-}
-
-/* Booking status badges */
-.status { display:inline-block; padding:6px 10px; border-radius:999px; font-weight:700; font-size:0.86rem; color:white }
-.status.waiting { background: linear-gradient(90deg, #f59e0b, #f97316); }
-.status.inprogress { background: linear-gradient(90deg, #2563eb, #1e40af); }
-.status.checkedin { background: linear-gradient(90deg, #10b981, #059669); }
-.status.pending { background: linear-gradient(90deg, #94a3b8, #64748b); }
-.status.feature-update { background: linear-gradient(90deg, #7c3aed, #06b6d4); }
-
-/* layout helper for lists that show a large status area */
-.book-card-right { display:flex; align-items:center; justify-content:center; min-width:120px }
-.book-card .status { width:max-content }
-
 /* MyBooks Page Styles */
 .mybooks-root { font-family: 'Segoe UI', Roboto, Arial, sans-serif; color: var(--hosp-text); }
 .mybooks-header { position: relative; height: 260px; overflow: hidden; border-radius: 12px; margin: 2rem 1.5rem; }
@@ -478,10 +418,16 @@
 .book-title { margin: 0; font-size: 1.05rem; color: var(--hosp-blue-dark) }
 .book-desc { margin: 8px 0 0 0; color: #475569; font-size: 0.95rem }
 .book-card-right { display: flex; align-items: center; gap: 8px }
-.status { padding: 8px 12px; border-radius: 999px; font-weight:700; font-size:0.85rem; color:white }
+.status { padding: 8px 12px; border-radius: 999px; font-weight:700; font-size:0.85rem; color:white; display: inline-block; text-transform: none }
 .status.pending { background: #f59e0b }
 .status.confirmed { background: var(--hosp-green) }
 .status.cancelled { background: #ef4444 }
+
+/* Book status badges based on backend enum: checkedIn, waiting, inProgress */
+.status.waiting { background: var(--hosp-blue); }
+.status.checkedin { background: var(--hosp-green); }
+.status.inprogress { background: #f59e0b; color: #111827; }
+.status.unknown { background: #6b7280; }
 
 /* Doctor info inside book card */
 .book-doctor-cat { font-size: 0.9rem; color: var(--hosp-muted); margin-top: 6px }
