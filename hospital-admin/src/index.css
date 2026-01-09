@@ -117,6 +117,7 @@ a {
   position: sticky;
   top: 0;
   z-index: 50;
+  flex-wrap: wrap;
 }
 
 .site-nav a {
@@ -393,5 +394,145 @@ a {
   .collection-header {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+/* NAVBAR RESPONSIVE ADJUSTMENTS */
+@media (max-width: 900px) {
+  .site-nav {
+    padding: 12px 18px;
+    gap: 12px;
+  }
+  .site-nav a {
+    padding: 8px 10px;
+  }
+}
+
+@media (max-width: 700px) {
+  .site-nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 12px 14px;
+  }
+
+  .site-nav h1 {
+    width: 100%;
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+  }
+
+  .site-nav a {
+    display: block;
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    color: var(--primary);
+    font-weight: 600;
+  }
+
+  .site-nav .logout-btn,
+  .site-nav .btn-ghost {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .site-nav span {
+    width: 100%;
+    text-align: left;
+    padding: 6px 4px;
+    color: var(--muted);
+  }
+}
+
+/* Hamburger and mobile nav styles */
+.hamburger {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: 8px;
+}
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  margin: 4px 0;
+  transition: transform 0.22s ease, opacity 0.22s ease;
+}
+.hamburger.is-active span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.hamburger.is-active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.is-active span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.nav-items {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  width: 100%;
+}
+
+@media (max-width: 700px) {
+  .hamburger { display: inline-flex; }
+  .nav-items { display: none; flex-direction: column; gap: 8px; padding-top: 8px; }
+  .nav-items.open { display: flex; }
+  .nav-brand { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+}
+
+/* =========================
+   FOOTER
+========================= */
+.site-footer {
+  margin-top: 40px;
+  background: linear-gradient(180deg, #ffffff, #f7fafc);
+  border-top: 1px solid var(--border);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 36px 24px;
+}
+
+.footer-col h3,
+.footer-col h4 {
+  margin-bottom: 8px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin: 6px 0;
+}
+
+.footer-links a {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding: 12px 0;
+  background: transparent;
+}
+
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-grid {
+    padding: 24px 16px;
   }
 }

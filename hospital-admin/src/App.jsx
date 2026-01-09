@@ -11,6 +11,7 @@ import Reports from "./components/pages/reports.jsx";
 import Login from "./components/pages/login.jsx";
 import Register from "./components/pages/register.jsx";
 import Navbar from "./components/pages/navbar.jsx";
+import Footer from "./components/pages/Footer.jsx";
 
 function AppRoutes({ user }) {
 	return (
@@ -65,6 +66,7 @@ function AppInner() {
 			<main style={{ padding: 20 }}>
 				<AppRoutes user={user} />
 			</main>
+			<Footer />
 		</div>
 	);
 }
