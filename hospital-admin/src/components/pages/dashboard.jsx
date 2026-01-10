@@ -49,7 +49,7 @@ export default function Dashboard() {
 		<div className="admin-dashboard page">
 			<div className="dashboard-hero">
 				<motion.div className="hero-content" initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6 }}>
-					<h1>Hospital Admin Dashboard</h1>
+					<h1>Dengel Hospital Admin Dashboard</h1>
 					<p className="hero-sub">Fast insights across bookings, clinicians, patients and reports — beautifully visualized.</p>
 				</motion.div>
 				<motion.img src={hospitalMain} alt="hospital" className="hero-image" initial={{ scale: 0.98, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.8 }} />

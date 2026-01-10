@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="page footer-grid">
         <div className="footer-col">
-          <h3>Hospital Admin System</h3>
+          <h3>Dengel Hospital Admin System</h3>
           <p className="muted">Manage books, doctors, patients and reports efficiently with role-based access and clear audit trails.</p>
           <p className="muted" style={{ marginTop: 8 }}>Version 1.0 • Built for internal administration</p>
         </div>
