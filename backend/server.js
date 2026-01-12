@@ -23,6 +23,8 @@ const allowedOrigins = [
   'http://localhost:5174',
   'http://localhost:5175',
   'https://hospital-system-admin.vercel.app',
+  'https://hospital-system-doctors.vercel.app',
+  'https://hospital-system-patients.vercel.app',
 ];
 
 app.use(
