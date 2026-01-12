@@ -15,7 +15,6 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-/* 🔴 REQUIRED FOR RENDER + COOKIES */
 app.set('trust proxy', 1);
 
 const allowedOrigins = [
@@ -23,7 +22,7 @@ const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:5174',
   'http://localhost:5175',
-  'https://YOUR-FRONTEND.vercel.app',
+  'https://hospital-system-admin.vercel.app',
 ];
 
 app.use(
